@@ -1,482 +1,1064 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bloom Piper | Flores Eternas</title>
-    <!-- Tailwind CSS (Estilos) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Fuentes Elegantes -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🚀 Panel de Marketing - Tienda Deportiva</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            pink: '#ec4899', 
-                            dark: '#fb6f92'
-                        }
-                    },
-                    fontFamily: {
-                        serif: ['"Playfair Display"', 'serif'],
-                        sans: ['"Lato"', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        html { scroll-behavior: smooth; }
-        .fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; transform: translateY(20px); }
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-        
-        .text-glow { text-shadow: 0 0 10px rgba(255, 143, 171, 0.8), 0 0 20px rgba(255, 143, 171, 0.4); }
-        
-        .pulse-btn {
-            animation: pulse-green 2s infinite;
-        }
-        @keyframes pulse-green {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
+    body {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        min-height: 100vh;
+        color: #fff;
+        padding: 20px;
+    }
 
-        /* Ocultar scrollbar en elementos horizontales */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    header h1 {
+        font-size: 2.5em;
+        background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 10px;
+    }
+
+    header p {
+        color: #a0a0c0;
+        font-size: 1.1em;
+    }
+
+    .tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .tab-btn {
+        padding: 12px 24px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid transparent;
+        color: #fff;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 1em;
+        font-weight: 600;
+    }
+
+    .tab-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
+
+    .tab-btn.active {
+        background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+        border-color: #fff;
+        box-shadow: 0 5px 20px rgba(245, 87, 108, 0.4);
+    }
+
+    .tab-content {
+        display: none;
+        animation: fadeIn 0.5s;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 20px;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 15px;
+        padding: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s;
+        position: relative;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(245, 87, 108, 0.2);
+        border-color: rgba(245, 87, 108, 0.3);
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .card-title {
+        font-size: 1.2em;
+        color: #f093fb;
+        font-weight: 700;
+    }
+
+    .badge {
+        padding: 4px 12px;
+        background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+        border-radius: 20px;
+        font-size: 0.75em;
+        font-weight: 600;
+    }
+
+    .badge.gym { background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); }
+    .badge.oferta { background: linear-gradient(90deg, #f5576c 0%, #f093fb 100%); }
+    .badge.motivacion { background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%); }
+    .badge.nuevo { background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%); }
+    .badge.combo { background: linear-gradient(90deg, #fa709a 0%, #fee140 100%); }
+    .badge.prompt { background: linear-gradient(90deg, #a8edea 0%, #fed6e3 100%); color: #333; }
+
+    .card-content {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        white-space: pre-wrap;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9em;
+        line-height: 1.6;
+        max-height: 300px;
+        overflow-y: auto;
+        color: #e0e0e0;
+    }
+
+    .card-content::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .card-content::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+    }
+
+    .card-content::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #f093fb 0%, #f5576c 100%);
+        border-radius: 10px;
+    }
+
+    .copy-btn {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        color: #fff;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+
+    .copy-btn:hover {
+        transform: scale(1.02);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .copy-btn.copied {
+        background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+    }
+
+    .section-title {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+        color: #f093fb;
+        text-align: center;
+    }
+
+    .info-box {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 15px;
+        margin-bottom: 30px;
+        border-left: 4px solid #f5576c;
+    }
+
+    .info-box h3 {
+        color: #f093fb;
+        margin-bottom: 10px;
+    }
+
+    .calendar {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .day-card {
+        background: rgba(255, 255, 255, 0.08);
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+        transition: all 0.3s;
+    }
+
+    .day-card:hover {
+        background: rgba(245, 87, 108, 0.2);
+        transform: scale(1.05);
+    }
+
+    .day-card .day-name {
+        font-weight: 700;
+        color: #f093fb;
+        font-size: 0.9em;
+    }
+
+    .day-card .day-emoji {
+        font-size: 2em;
+        margin: 10px 0;
+    }
+
+    .day-card .day-type {
+        font-size: 0.8em;
+        color: #e0e0e0;
+    }
+
+    .search-bar {
+        width: 100%;
+        padding: 15px 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 30px;
+        color: #fff;
+        font-size: 1em;
+        margin-bottom: 20px;
+    }
+
+    .search-bar:focus {
+        outline: none;
+        border-color: #f5576c;
+    }
+
+    .search-bar::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 50px;
+        padding: 20px;
+        color: #a0a0c0;
+        font-size: 0.9em;
+    }
+
+    @media (max-width: 768px) {
+        header h1 { font-size: 1.8em; }
+        .calendar { grid-template-columns: repeat(2, 1fr); }
+        .grid { grid-template-columns: 1fr; }
+    }
+</style>
 </head>
-<body class="font-sans text-gray-800 antialiased bg-brand-bg selection:bg-brand-dark selection:text-white overflow-x-hidden">
+<body>
 
-    <!-- Navegación -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 bg-transparent text-white">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <!-- Logo -->
-            <div class="flex items-center gap-2">
-                <span id="nav-logo" class="text-2xl font-serif font-bold tracking-tighter text-white shadow-sm drop-shadow-md">
-                    Bloom Piper <span class="text-3xl">🌸</span>
-                </span>
-            </div>
-
-            <!-- Menú Escritorio -->
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#colecciones" class="nav-link text-sm font-medium hover:text-pink-300 transition-colors shadow-sm">Colecciones</a>
-                <a href="#nosotros" class="nav-link text-sm font-medium hover:text-pink-300 transition-colors shadow-sm">Nosotros</a>
-                <a href="#contacto" class="nav-link text-sm font-medium hover:text-pink-300 transition-colors shadow-sm">Contacto</a>
-                <button onclick="contactWhatsapp()" class="nav-btn px-5 py-2 rounded-full text-sm font-semibold transition-all transform hover:scale-105 bg-white text-pink-600 hover:bg-gray-100 shadow-md">
-                    Pedir Ahora
-                </button>
-            </div>
-
-            <!-- Botón Menú Móvil -->
-            <div class="md:hidden">
-                <button id="menu-btn" class="text-white focus:outline-none drop-shadow-md">
-                    <!-- Icono Menu -->
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                </button>
-            </div>
-        </div>
-
-        <!-- Menú Móvil -->
-        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-lg shadow-xl py-8 flex flex-col items-center space-y-6 text-gray-800 border-t border-brand-light z-50">
-            <a href="#colecciones" class="text-xl font-serif font-bold text-gray-600 hover:text-brand-dark" onclick="toggleMenu()">Colecciones</a>
-            <a href="#proceso" class="text-xl font-serif font-bold text-gray-600 hover:text-brand-dark" onclick="toggleMenu()">Cómo Pedir</a>
-            <a href="#nosotros" class="text-xl font-serif font-bold text-gray-600 hover:text-brand-dark" onclick="toggleMenu()">Nosotros</a>
-            <button onclick="contactWhatsapp()" class="flex items-center gap-2 text-white bg-brand-dark px-8 py-3 rounded-full font-bold shadow-lg w-3/4 justify-center">
-                Pedir por WhatsApp
-            </button>
-        </div>
-    </nav>
-
-    <!-- Hero Section (Principal) -->
-    <header class="relative h-screen flex items-center justify-center overflow-hidden">
-        <!-- Fondo Video/Imagen -->
-        <div class="absolute inset-0 z-0">
-            <!-- Imagen de flores vibrantes y elegantes -->
-            <img src="https://images.unsplash.com/photo-1596627734107-11005a5a9c2f?q=80&w=2070&auto=format&fit=crop" alt="Fondo floral neón elegante" class="w-full h-full object-cover brightness-[0.6]">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/40"></div>
-        </div>
-
-        <!-- Decoraciones Flotantes -->
-        <div class="absolute top-1/4 left-10 w-20 h-20 bg-pink-500 rounded-full blur-[50px] opacity-30 animate-float"></div>
-        <div class="absolute bottom-1/3 right-10 w-32 h-32 bg-purple-500 rounded-full blur-[60px] opacity-30 animate-float" style="animation-delay: 2s;"></div>
-
-        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16 fade-in-up" style="animation-delay: 0.2s;">
-            
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-6 leading-tight drop-shadow-xl">
-                Minimalismo floral <br />
-                <span class="italic text-pink-300">con esencia natural</span>
-            </h1>
-            <p class="text-gray-100 text-lg md:text-2xl mb-10 max-w-2xl mx-auto font-light drop-shadow-md">
-                Ramos de flores únicos diseñados para capturar la belleza en La Habana.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button onclick="contactWhatsapp()" class="px-8 py-4 bg-pink-500 text-white text-lg font-medium hover:bg-pink-600 transition-all duration-300 shadow-xl hover:shadow-pink-500/50 rounded-sm flex items-center justify-center gap-2">
-                    <!-- Icono Carrito/Bolsa -->
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-                    Ordenar Bouquet
-                </button>
-                <a href="#colecciones" class="px-8 py-4 bg-transparent border-2 border-white text-white text-lg font-medium hover:bg-white hover:text-pink-600 transition-all duration-300 rounded-sm flex items-center justify-center gap-2">
-                    Ver Catálogo
-                </a>
-            </div>
-        </div>
+<div class="container">
+    <header>
+        <h1>🚀 Panel de Marketing</h1>
+        <p>Todo lo que necesitas para vender más - Copia y pega en un click</p>
     </header>
 
-    <!-- Cinta Infinita (Marquee) -->
-    <div class="bg-brand-dark text-white py-3 overflow-hidden relative z-20 shadow-xl border-y border-pink-400">
-        <div class="whitespace-nowrap animate-marquee flex gap-10 items-center">
-            <span class="text-sm font-bold tracking-widest uppercase flex items-center gap-4">✨ Flores Eternas <span class="text-pink-300">✦</span> Envíos a toda La Habana <span class="text-pink-300">✦</span> Personaliza tu color <span class="text-pink-300">✦</span> Hecho con amor <span class="text-pink-300">✦</span> Luces LED incluidas <span class="text-pink-300">✦</span></span>
-            <span class="text-sm font-bold tracking-widest uppercase flex items-center gap-4">✨ Flores Eternas <span class="text-pink-300">✦</span> Envíos a toda La Habana <span class="text-pink-300">✦</span> Personaliza tu color <span class="text-pink-300">✦</span> Hecho con amor <span class="text-pink-300">✦</span> Luces LED incluidas <span class="text-pink-300">✦</span></span>
-            <span class="text-sm font-bold tracking-widest uppercase flex items-center gap-4">✨ Flores Eternas <span class="text-pink-300">✦</span> Envíos a toda La Habana <span class="text-pink-300">✦</span> Personaliza tu color <span class="text-pink-300">✦</span> Hecho con amor <span class="text-pink-300">✦</span> Luces LED incluidas <span class="text-pink-300">✦</span></span>
+    <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('plantillas')">📝 Plantillas WhatsApp/FB</button>
+        <button class="tab-btn" onclick="showTab('prompts')">🎨 Prompts para Imágenes</button>
+        <button class="tab-btn" onclick="showTab('calendario')">📅 Calendario Semanal</button>
+        <button class="tab-btn" onclick="showTab('tips')">💡 Tips y Estrategias</button>
+    </div>
+
+    <!-- TAB PLANTILLAS -->
+    <div id="plantillas" class="tab-content active">
+        <h2 class="section-title">📝 Plantillas Listas para Copiar</h2>
+        <input type="text" class="search-bar" placeholder="🔍 Buscar plantilla..." onkeyup="searchCards(this, 'plantillas-grid')">
+        
+        <div class="grid" id="plantillas-grid">
+            <!-- Se generan con JavaScript -->
         </div>
     </div>
 
-    <!-- Sección de Catálogo (Ramos Buchones/Grandes) -->
-    <section id="colecciones" class="py-24 px-4 max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <span class="text-brand-dark font-bold tracking-widest uppercase text-sm mb-2 block">Nuestros Best-Sellers</span>
-            <h2 class="text-3xl md:text-5xl font-serif text-gray-900 mb-6">
-                Nuestras colecciones <span class="text-pink-500 italic">únicas</span>
-            </h2>
-            <p class="text-gray-500 text-lg md:text-xl leading-relaxed font-light">
-                Explora nuestra selección cuidadosamente curada de arreglos florales. Cada ramo es un testimonio de nuestro compromiso con el arte, la frescura y el estilo. Desde la elegancia cotidiana hasta grandes celebraciones en La Habana.
-            </p>
+    <!-- TAB PROMPTS -->
+    <div id="prompts" class="tab-content">
+        <h2 class="section-title">🎨 Prompts para Gemini/IA</h2>
+        <div class="info-box">
+            <h3>💡 Cómo usar:</h3>
+            <p>1. Copia el prompt que quieras<br>
+               2. Ve a Gemini o Copilot<br>
+               3. Sube tu foto del producto<br>
+               4. Pega el prompt<br>
+               5. ¡Recibe tu imagen profesional!</p>
         </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            
-            <!-- Producto 1: Tulipanes Buchón -->
-            <div class="group relative rounded-3xl overflow-hidden shadow-2xl aspect-[3/4] cursor-pointer hover:shadow-pink-200 transition-all duration-500">
-                <!-- Imagen de ramo grande envuelto -->
-                <img src="images/foto2.png" alt="Ramo Azul Artístico" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-                
-                <div class="absolute top-4 left-4">
-                    <span class="bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full border border-white/30">
-                        🔥 Más Pedido
-                    </span>
-                </div>
-
-                <div class="absolute bottom-0 left-0 p-6 text-white w-full transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                    <h3 class="text-2xl font-serif font-bold mb-1">Tulipanes Deluxe</h3>
-                    <p class="text-sm text-pink-200 mb-4 font-light">20+ Flores con luces integradas</p>
-                    <button onclick="contactWhatsapp()" class="w-full py-3 bg-white text-brand-dark rounded-xl text-sm font-bold hover:bg-brand-pink hover:text-white transition-colors shadow-lg flex items-center justify-center gap-2">
-                        <span>💬</span> Cotizar este ramo
-                    </button>
-                </div>
-            </div>
-
-            <!-- Producto 2: Ramo Mariposa/Azul -->
-            <div class="group relative rounded-3xl overflow-hidden shadow-2xl aspect-[3/4] cursor-pointer hover:shadow-pink-200 transition-all duration-500">
-                <img src="images/foto3.png" alt="Ramo Rosas Gigante" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-                
-                <div class="absolute bottom-0 left-0 p-6 text-white w-full transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                    <h3 class="text-2xl font-serif font-bold mb-1">Fantasía Azul</h3>
-                    <p class="text-sm text-blue-200 mb-4 font-light">Detalles de mariposas y perlas</p>
-                    <button onclick="contactWhatsapp()" class="w-full py-3 bg-white text-brand-dark rounded-xl text-sm font-bold hover:bg-brand-pink hover:text-white transition-colors shadow-lg flex items-center justify-center gap-2">
-                        <span>💬</span> Cotizar este ramo
-                    </button>
-                </div>
-            </div>
-
-            <!-- Producto 3: Ramo Rosa Gigante -->
-            <div class="group relative rounded-3xl overflow-hidden shadow-2xl aspect-[3/4] cursor-pointer hover:shadow-pink-200 transition-all duration-500">
-                <img src="images/foto4.png" alt="Girasoles Eternos" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-                
-                <div class="absolute bottom-0 left-0 p-6 text-white w-full transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                    <h3 class="text-2xl font-serif font-bold mb-1">Rosas Eternas</h3>
-                    <p class="text-sm text-pink-200 mb-4 font-light">Envoltorio coreano premium</p>
-                    <button onclick="contactWhatsapp()" class="w-full py-3 bg-white text-brand-dark rounded-xl text-sm font-bold hover:bg-brand-pink hover:text-white transition-colors shadow-lg flex items-center justify-center gap-2">
-                        <span>💬</span> Cotizar este ramo
-                    </button>
-                </div>
-            </div>
-
-            <!-- Producto 4: Girasoles/Amarillo -->
-            <div class="group relative rounded-3xl overflow-hidden shadow-2xl aspect-[3/4] cursor-pointer hover:shadow-pink-200 transition-all duration-500">
-                <img src="images/foto5.png" alt="Ramo Grande" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-                
-                <div class="absolute bottom-0 left-0 p-6 text-white w-full transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                    <h3 class="text-2xl font-serif font-bold mb-1">Girasoles de Luz</h3>
-                    <p class="text-sm text-yellow-200 mb-4 font-light">Brilla como el sol, de noche</p>
-                    <button onclick="contactWhatsapp()" class="w-full py-3 bg-white text-brand-dark rounded-xl text-sm font-bold hover:bg-brand-pink hover:text-white transition-colors shadow-lg flex items-center justify-center gap-2">
-                        <span>💬</span> Cotizar este ramo
-                    </button>
-                </div>
-            </div>
-
-        </div>
+        <input type="text" class="search-bar" placeholder="🔍 Buscar prompt..." onkeyup="searchCards(this, 'prompts-grid')">
         
-        <div class="text-center mt-12">
-            <a href="https://www.instagram.com/bloompipper" target="_blank" class="inline-block border-b-2 border-brand-dark text-brand-dark font-bold hover:text-brand-pink hover:border-brand-pink transition-colors pb-1">
-                Ver más modelos en Instagram &rarr;
-            </a>
+        <div class="grid" id="prompts-grid">
+            <!-- Se generan con JavaScript -->
         </div>
-    </section>
+    </div>
 
-    <!-- Seccion Nosotros -->
-    <section id="nosotros" class="py-24 bg-pink-50">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center gap-16">
-                <div class="md:w-1/2 text-left space-y-6">
-                    <span class="text-pink-500 font-bold tracking-widest uppercase text-sm">Personalización Total</span>
-                    <h2 class="text-4xl md:text-6xl font-serif text-gray-900 leading-none">
-                        Creaciones <br/><span class="text-pink-500 italic">a su medida</span>
-                    </h2>
-                    <p class="text-gray-600 text-lg leading-relaxed font-light">
-                        ¿Tienes una visión específica en mente? Nuestros expertos floristas en La Habana pueden dar vida a tus ideas. Desde arreglos de boda personalizados hasta regalos únicos, creamos ramos que reflejan perfectamente tu estilo.
-                    </p>
-                    <div class="pt-6">
-                        <button onclick="contactWhatsapp()" class="px-8 py-4 bg-gray-900 text-white rounded hover:bg-gray-800 transition-all flex items-center gap-3 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
-                            <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                            Cotizar por WhatsApp
-                        </button>
-                    </div>
-                </div>
-                <div class="md:w-1/2 relative group">
-                    <div class="relative z-10 overflow-hidden shadow-2xl rounded-lg transform transition-transform duration-500 group-hover:rotate-1">
-                        <img src="images/foto6.png" alt="Ramo personalizado artístico" class="w-full h-auto object-cover">
-                    </div>
-                    <!-- Decoración geométrica -->
-                    <div class="absolute -bottom-6 -right-6 w-full h-full border-4 border-pink-200 z-0 hidden md:block rounded-lg"></div>
-                </div>
+    <!-- TAB CALENDARIO -->
+    <div id="calendario" class="tab-content">
+        <h2 class="section-title">📅 Calendario Semanal de Publicaciones</h2>
+        <div class="info-box">
+            <h3>🎯 Estrategia:</h3>
+            <p>Publica 1 vez al día siguiendo este patrón para mantener variedad y no aburrir a tu audiencia.</p>
+        </div>
+        <div class="calendar">
+            <div class="day-card">
+                <div class="day-name">LUNES</div>
+                <div class="day-emoji">💪</div>
+                <div class="day-type">Motivación<br>+ Producto Estrella</div>
+            </div>
+            <div class="day-card">
+                <div class="day-name">MARTES</div>
+                <div class="day-emoji">🆕</div>
+                <div class="day-type">Producto Nuevo<br>/ Novedad</div>
+            </div>
+            <div class="day-card">
+                <div class="day-name">MIÉRCOLES</div>
+                <div class="day-emoji">🎁</div>
+                <div class="day-type">Combo /<br>Descuento del día</div>
+            </div>
+            <div class="day-card">
+                <div class="day-name">JUEVES</div>
+                <div class="day-emoji">👤</div>
+                <div class="day-type">Testimonio<br>Cliente feliz</div>
+            </div>
+            <div class="day-card">
+                <div class="day-name">VIERNES</div>
+                <div class="day-emoji">🔥</div>
+                <div class="day-type">Oferta<br>Fin de semana</div>
+            </div>
+            <div class="day-card">
+                <div class="day-name">SÁBADO</div>
+                <div class="day-emoji">📸</div>
+                <div class="day-type">Modelo /<br>Foto en acción</div>
+            </div>
+            <div class="day-card">
+                <div class="day-name">DOMINGO</div>
+                <div class="day-emoji">📢</div>
+                <div class="day-type">Resumen semanal<br>+ Preventa</div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Seccion Frescura -->
-    <section class="py-24 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row-reverse items-center gap-16">
-                <div class="md:w-1/2 text-left space-y-6">
-                    <span class="text-purple-500 font-bold tracking-widest uppercase text-sm">Calidad Garantizada</span>
-                    <h2 class="text-4xl md:text-5xl font-serif text-gray-900 leading-tight">
-                        Flores artesanales <br /><span class="text-purple-500 italic">todos los días</span>
-                    </h2>
-                    <p class="text-gray-600 text-lg leading-relaxed font-light">
-                        Descubre nuestra selección diaria de flores. Actualizamos continuamente nuestra oferta para traerte las flores más bellas y duraderas de La Habana. ¡Síguenos para inspirarte!
-                    </p>
-                    <div class="pt-4">
-                        <a href="https://www.instagram.com/bloompipper?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="inline-flex px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded hover:opacity-90 transition-all items-center gap-3 shadow-lg hover:shadow-purple-500/30">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                            Síguenos en Instagram
-                        </a>
-                    </div>
-                </div>
-                <div class="md:w-1/2 relative group">
-                    <div class="relative z-10 overflow-hidden shadow-2xl rounded-lg">
-                        <img src="https://images.unsplash.com/photo-1507290439931-a861b5a38200?q=80&w=2032&auto=format&fit=crop" alt="Flores frescas luz natural" class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700">
-                    </div>
-                    <!-- Decoración -->
-                    <div class="absolute -top-6 -left-6 w-full h-full border-4 border-purple-100 z-0 hidden md:block rounded-lg"></div>
-                </div>
-            </div>
+    <!-- TAB TIPS -->
+    <div id="tips" class="tab-content">
+        <h2 class="section-title">💡 Tips y Estrategias</h2>
+        <div class="grid" id="tips-grid">
+            <!-- Se generan con JavaScript -->
         </div>
-    </section>
+    </div>
 
-    <!-- Sección Cómo Funciona -->
-    <section id="proceso" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-5xl font-serif text-center text-gray-800 mb-16">¿Cómo tener tu ramo soñado?</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-                <!-- Línea conectora (Desktop) -->
-                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-pink-100 -z-0 transform -translate-y-1/2"></div>
-
-                <!-- Paso 1 -->
-                <div class="relative z-10 bg-white p-8 rounded-2xl shadow-xl text-center border border-pink-50 hover:-translate-y-2 transition-transform">
-                    <div class="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center text-3xl mx-auto mb-6 shadow-inner">
-                        📸
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">1. Elige tu Modelo</h3>
-                    <p class="text-gray-500">Mira nuestro catálogo o envíanos una foto de Instagram de referencia.</p>
-                </div>
-
-                <!-- Paso 2 -->
-                <div class="relative z-10 bg-white p-8 rounded-2xl shadow-xl text-center border border-pink-50 hover:-translate-y-2 transition-transform">
-                    <div class="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center text-3xl mx-auto mb-6 shadow-inner">
-                        🎨
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">2. Personaliza</h3>
-                    <p class="text-gray-500">Escoge el color de las flores, el papel del envoltorio y el tipo de luces.</p>
-                </div>
-
-                <!-- Paso 3 -->
-                <div class="relative z-10 bg-white p-8 rounded-2xl shadow-xl text-center border border-pink-50 hover:-translate-y-2 transition-transform">
-                    <div class="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center text-3xl mx-auto mb-6 shadow-inner">
-                        🎁
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">3. Recibe en La Habana</h3>
-                    <p class="text-gray-500">Coordinamos la entrega o recogida. ¡Listo para sorprender!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección de Testimonios/Frase -->
-    <section class="py-24 bg-brand-light relative overflow-hidden">
-        <div class="absolute -top-10 -right-10 text-white opacity-50">
-            <svg width="300" height="300" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-        </div>
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <div class="flex justify-center mb-6 text-brand-dark">
-                ★★★★★
-            </div>
-            <h2 class="text-3xl md:text-5xl font-serif text-gray-800 italic leading-snug mb-8">
-                "Son más bonitas que en las fotos. El efecto de las luces en la noche es mágico. Mi novia quedó encantada."
-            </h2>
-            <p class="font-bold text-gray-600 uppercase tracking-widest">— Cliente Feliz en La Habana</p>
-        </div>
-    </section>
-
-    <!-- Características (Por qué elegirnos) -->
-    <section id="nosotros" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
-                <div class="group p-8 rounded-3xl bg-pink-50 border border-pink-100 hover:shadow-xl transition-all hover:bg-pink-100">
-                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">✨</div>
-                    <h3 class="text-xl font-bold mb-2 text-gray-800">100% Hecho a Mano</h3>
-                    <p class="text-gray-600">Cada ramo es una obra de arte creada pétalo a pétalo. Calidad artesanal que se nota.</p>
-                </div>
-                <div class="group p-8 rounded-3xl bg-purple-50 border border-purple-100 hover:shadow-xl transition-all hover:bg-purple-100">
-                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">💡</div>
-                    <h3 class="text-xl font-bold mb-2 text-gray-800">Magia LED</h3>
-                    <p class="text-gray-600">Incluyen un sistema de luces discreto y seguro. De día son bellas, de noche espectaculares.</p>
-                </div>
-                <div class="group p-8 rounded-3xl bg-blue-50 border border-blue-100 hover:shadow-xl transition-all hover:bg-blue-100">
-                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🎀</div>
-                    <h3 class="text-xl font-bold mb-2 text-gray-800">Presentación de Lujo</h3>
-                    <p class="text-gray-600">Envoltorios estilo coreano, lazos de satén, mariposas y coronas. Detalles que importan.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Banner Instagram Grande -->
-    <section class="py-20 bg-gray-900 text-white text-center relative overflow-hidden">
-        <!-- Fondo Decorativo -->
-        <div class="absolute inset-0 bg-gradient-to-r from-brand-dark to-purple-800 opacity-90"></div>
-        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-
-        <div class="container mx-auto px-6 relative z-10">
-            <h2 class="text-4xl md:text-5xl font-serif mb-6">Únete a nuestra comunidad</h2>
-            <p class="text-xl mb-10 text-pink-100 font-light">Mira los videos de las reacciones y los nuevos modelos cada semana.</p>
-            <a href="https://www.instagram.com/bloompipper" target="_blank" class="inline-flex items-center gap-3 bg-white text-brand-dark px-10 py-4 rounded-full font-bold hover:bg-brand-light transition-all shadow-2xl transform hover:-translate-y-1 hover:scale-105">
-                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                Seguir en @bloompipper
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contacto" class="bg-gray-900 text-white pt-20 pb-10 border-t-8 border-pink-500">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-                <!-- Brand -->
-                <div class="col-span-1 md:col-span-1">
-                    <h3 class="text-3xl font-serif font-bold text-pink-400 mb-4">Bloom Piper</h3>
-                    <p class="text-gray-400 mb-6 leading-relaxed">Minimalismo floral con esencia natural. Llevando belleza y fragancia a cada rincón de La Habana.</p>
-                </div>
-                <!-- Ubicacion -->
-                <div>
-                    <h4 class="text-lg font-semibold mb-6 border-b border-gray-700 pb-2 inline-block">Ubicación</h4>
-                    <ul class="space-y-4 text-gray-400">
-                        <li class="flex items-start gap-3">
-                            <span class="text-pink-500 text-xl">📍</span>
-                            <span>La Habana, Cuba<br/><span class="text-sm text-gray-500">(DM para dirección exacta)</span></span>
-                        </li>
-                    </ul>
-                </div>
-                <!-- Horarios -->
-                <div>
-                    <h4 class="text-lg font-semibold mb-6 border-b border-gray-700 pb-2 inline-block">Horarios</h4>
-                    <ul class="space-y-4 text-gray-400">
-                        <li class="flex gap-2"><span>🕒</span> Lun - Vie: 9am - 5pm</li>
-                        <li class="flex gap-2"><span>🕒</span> Sábado: 10am - 3pm</li>
-                        <li class="flex gap-2 text-gray-600"><span>🔒</span> Domingo: Cerrado</li>
-                    </ul>
-                </div>
-                <!-- Contacto -->
-                <div>
-                    <h4 class="text-lg font-semibold mb-6 border-b border-gray-700 pb-2 inline-block">Contacto</h4>
-                    <ul class="space-y-4">
-                        <li>
-                            <button onclick="contactWhatsapp()" class="flex items-center gap-3 text-white bg-green-600 px-4 py-2 rounded hover:bg-green-500 w-full justify-center transition-colors">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                                5356856498
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-                <p>&copy; 2026 Bloom Piper Floristería.</p>
-            </div>
-        </div>
+    <footer>
+        <p>💜 Panel personalizado para tu tienda deportiva | Actualizado 2024</p>
     </footer>
+</div>
 
-    <!-- Botón Flotante -->
-    <a href="#" onclick="contactWhatsapp(); return false;" class="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 transition-all pulse-btn flex items-center justify-center border-4 border-white">
-        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-    </a>
+<script>
+    // ========== PLANTILLAS ==========
+    const plantillas = [
+        {
+            titulo: "🔥 Producto Estrella",
+            badge: "gym",
+            badgeText: "GYM",
+            texto: `🔥 ¡EL MÁS VENDIDO DE LA SEMANA! 🔥
 
-    <script>
-        // Configuración
-        const whatsappNumber = "5356856498";
-        
-        function contactWhatsapp() {
-            const url = `https://wa.me/${whatsappNumber}?text=Hola%20Bloom%20Piper,%20vi%20su%20web%20y%20me%20enamoré%20de%20los%20ramos%20eternos.%20¿Me%20podrían%20dar%20precios?`;
-            window.open(url, '_blank');
+👕 [NOMBRE DEL PRODUCTO]
+💰 Solo $[PRECIO] USD
+📏 Tallas disponibles: S, M, L, XL
+
+✅ Calidad garantizada
+✅ Diseño exclusivo
+✅ Entrega en toda La Habana
+
+📲 Escríbeme al WhatsApp: [TU NÚMERO]`
+        },
+        {
+            titulo: "💪 Motivación Gym",
+            badge: "motivacion",
+            badgeText: "MOTIVACIÓN",
+            texto: `💪 "El único entrenamiento malo es el que no hiciste"
+
+Empieza la semana con la mejor ropa deportiva 🔥
+
+🎯 Conjuntos completos desde $[PRECIO]
+🎯 Leggins premium desde $[PRECIO]
+🎯 Shorts hombre desde $[PRECIO]
+
+¡Vístete como el atleta que quieres ser! 💯
+
+📩 Privado o WhatsApp: [NÚMERO]`
+        },
+        {
+            titulo: "🎁 Combo del Día",
+            badge: "combo",
+            badgeText: "COMBO",
+            texto: `🎁 COMBO DEL DÍA 🎁
+
+👚 Top deportivo
+🩳 Short a juego
+
+💰 Antes: $30 USD
+🔥 HOY: $25 USD
+
+Solo por hoy ⏰
+Últimas piezas 📦
+
+DM ahora 📲`
+        },
+        {
+            titulo: "🆕 Producto Nuevo",
+            badge: "nuevo",
+            badgeText: "NUEVO",
+            texto: `🆕 ¡ACABA DE LLEGAR! 🆕
+
+[NOMBRE PRODUCTO]
+
+✨ Nuevo diseño
+✨ Colores exclusivos
+✨ Cantidades limitadas
+
+💵 $[PRECIO] USD
+📏 Todas las tallas
+
+¿Te lo apartamos? 🙋‍♀️`
+        },
+        {
+            titulo: "🚨 Rebaja Brutal",
+            badge: "oferta",
+            badgeText: "OFERTA",
+            texto: `🚨 ¡REBAJA BRUTAL! 🚨
+
+⛔ Antes: $[X] USD
+✅ Ahora: $[Y] USD
+💥 Ahorras: $[Z] USD
+
+Solo mientras dure el stock ⏳
+
+📩 Escríbeme antes que se acaben`
+        },
+        {
+            titulo: "❤️ Testimonio",
+            badge: "motivacion",
+            badgeText: "SOCIAL",
+            texto: `❤️ CLIENTA FELIZ ❤️
+
+"La calidad es increíble, ya es mi tercera compra 🥰"
+- [Nombre cliente]
+
+Únete a las decenas de clientas satisfechas 💪
+
+Escríbeme y comprueba por qué somos diferentes ✨`
+        },
+        {
+            titulo: "📸 Estilo de Vida",
+            badge: "gym",
+            badgeText: "LIFESTYLE",
+            texto: `📸 Modo GYM activado 💪
+
+Cuando la ropa te motiva a entrenar más fuerte 🔥
+
+🛍️ Todo lo que ves está disponible
+💵 Precios desde $[X] USD
+
+¿Cuál es tu look favorito? 👇`
+        },
+        {
+            titulo: "⏰ Urgencia",
+            badge: "oferta",
+            badgeText: "URGENTE",
+            texto: `⏰ ¡ÚLTIMAS HORAS! ⏰
+
+🔴 Quedan pocas unidades de:
+• Leggins negros talla M
+• Conjunto rosa talla S
+• Shorts hombre L
+
+Al que madruga... 🐦
+
+📲 [NÚMERO]`
+        },
+        {
+            titulo: "💡 Comparación de Valor",
+            badge: "oferta",
+            badgeText: "VALOR",
+            texto: `💡 ¿Sabías que...?
+
+En tiendas físicas de La Habana:
+❌ Un conjunto deportivo: $50-70 USD
+
+Conmigo:
+✅ Conjunto de la misma calidad: $25-30 USD
+
+¡AHORRAS MÁS DEL 50%! 💰
+
+📩 Escríbeme`
+        },
+        {
+            titulo: "🤔 Pregunta al Público",
+            badge: "motivacion",
+            badgeText: "ENGAGEMENT",
+            texto: `🤔 CUÉNTAME...
+
+¿Qué prefieres para entrenar? 👇
+
+1️⃣ Conjunto completo
+2️⃣ Leggins + top separados
+3️⃣ Short + camiseta
+
+Responde en los comentarios y te doy una oferta especial 🎁`
+        },
+        {
+            titulo: "📢 Anuncio General",
+            badge: "nuevo",
+            badgeText: "CATÁLOGO",
+            texto: `📢 CATÁLOGO ACTUALIZADO 📢
+
+🆕 Nuevos modelos
+💰 Precios actualizados
+🎁 Ofertas especiales
+📦 Stock disponible
+
+¿Quieres el catálogo completo?
+Escríbeme "CATÁLOGO" al privado 📲`
+        },
+        {
+            titulo: "🎊 Fin de Semana",
+            badge: "oferta",
+            badgeText: "WEEKEND",
+            texto: `🎊 ¡FIN DE SEMANA DEPORTIVO! 🎊
+
+Aprovecha para renovar tu ropa de gym:
+
+💥 20% OFF en toda la tienda
+💥 Regalo sorpresa en compras +$40
+💥 Envío gratis en La Habana
+
+Solo sábado y domingo ⏰
+
+📩 [NÚMERO]`
+        },
+        {
+            titulo: "🌟 Antes/Después",
+            badge: "motivacion",
+            badgeText: "COMPARATIVA",
+            texto: `🌟 EL PODER DE LA ROPA CORRECTA 🌟
+
+Cuando entrenas con:
+❌ Ropa vieja y sin forma: te desanimas
+✅ Ropa nueva y bonita: te motivas al 100%
+
+Renueva tu look deportivo hoy 💪
+
+📩 Escríbeme`
+        },
+        {
+            titulo: "🎁 Idea de Regalo",
+            badge: "combo",
+            badgeText: "REGALO",
+            texto: `🎁 ¿BUSCAS UN REGALO?
+
+Sorprende con:
+❤️ Conjunto deportivo mujer: $25 USD
+❤️ Set de accesorios gym: $15 USD
+❤️ Ropa hombre + guantillas: $22 USD
+
+Envolvemos como regalo 🎀
+
+📩 Pide ya`
+        },
+        {
+            titulo: "🔔 Preventa",
+            badge: "nuevo",
+            badgeText: "PREVENTA",
+            texto: `🔔 PRÓXIMAMENTE 🔔
+
+Esta semana llegan:
+🆕 Leggins con bolsillos laterales
+🆕 Conjuntos deportivos 3 piezas
+🆕 Nuevos colores en tops
+
+¿Quieres apartar el tuyo con anticipación?
+
+📩 Escríbeme "APARTAR"`
+        },
+        {
+            titulo: "🚨 Actualización Rápida",
+            badge: "nuevo",
+            badgeText: "UPDATE",
+            texto: `🚨 ACTUALIZACIÓN DISPONIBLE 🚨
+
+✅ Nuevos productos en stock
+💰 Precios actualizados
+🎁 Rebajas especiales
+
+Escríbeme al privado 📩`
+        },
+        {
+            titulo: "💎 Cliente VIP",
+            badge: "motivacion",
+            badgeText: "VIP",
+            texto: `💎 OFERTA VIP 💎
+
+Solo para mis clientes fieles:
+
+🎁 15% de descuento adicional
+🎁 Producto sorpresa gratis
+🎁 Envío gratis
+
+Válido hasta [FECHA]
+
+Escríbeme "VIP" al privado 📲`
+        },
+        {
+            titulo: "🏋️ Consejo Fitness",
+            badge: "motivacion",
+            badgeText: "TIP",
+            texto: `💡 TIP DEL DÍA 💡
+
+¿Sabías que usar ropa ajustada te ayuda a:
+✅ Mejorar la circulación
+✅ Sudar más
+✅ Verte más motivado
+✅ Prevenir lesiones
+
+Por eso los conjuntos deportivos son la mejor inversión 💪
+
+Cuéntame ¿ya tienes el tuyo?`
         }
+    ];
 
-        // Toggle Menú Móvil
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            const menuBtn = document.getElementById('menu-btn');
-            
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-            } else {
-                menu.classList.add('hidden');
-            }
+    // ========== PROMPTS ==========
+    const prompts = [
+        {
+            titulo: "📸 Estudio Profesional",
+            badge: "prompt",
+            badgeText: "PROFESIONAL",
+            texto: `Transforma esta imagen en una foto de producto profesional de catálogo:
+
+- Iluminación de estudio suave y uniforme
+- Fondo blanco puro y limpio
+- Alta definición y textura de tela visible
+- Sombras naturales y sutiles
+- Colores fieles y vibrantes
+- Estilo minimalista tipo Nike/Adidas
+- Sin distracciones visuales
+- Producto centrado y protagonista
+- Resolución 4K
+- Formato cuadrado 1:1
+
+Mantén el diseño original intacto.`
+        },
+        {
+            titulo: "🌆 Estilo Urbano",
+            badge: "prompt",
+            badgeText: "URBAN",
+            texto: `Convierte esta imagen en una foto lifestyle urbana:
+
+- Fondo urbano moderno (calle, edificio, graffiti)
+- Iluminación natural de tarde (golden hour)
+- Tonos cálidos y contrastados
+- Look callejero, moderno y juvenil
+- Textura HD del producto
+- Ambiente dinámico y energético
+- Estilo Instagram influencer
+- Colores vibrantes pero naturales
+
+Mantén el diseño del producto sin cambios.`
+        },
+        {
+            titulo: "🏋️ Ambiente Gym",
+            badge: "prompt",
+            badgeText: "GYM",
+            texto: `Recrea esta imagen en un ambiente de gimnasio moderno:
+
+- Fondo: gimnasio industrial con equipos
+- Iluminación dramática con luces LED
+- Ambiente motivacional y potente
+- Contraste alto para dar impacto
+- Colores oscuros con acentos brillantes
+- Ambiente sudoroso y energético
+- Estilo fotografía deportiva profesional
+- Producto como protagonista
+
+Sin alterar el diseño del producto.`
+        },
+        {
+            titulo: "🌈 Colores Vibrantes",
+            badge: "prompt",
+            badgeText: "VIBRANTE",
+            texto: `Mejora esta imagen con estilo colorido y llamativo:
+
+- Fondo con degradado colorido (rosa, morado, azul)
+- Iluminación pop art
+- Colores saturados y vibrantes
+- Efecto neón sutil
+- Estilo redes sociales moderno
+- Ideal para Instagram y TikTok
+- Producto brillante y llamativo
+- Estética Gen Z
+
+Diseño original intacto.`
+        },
+        {
+            titulo: "☀️ Playa/Exterior",
+            badge: "prompt",
+            badgeText: "OUTDOOR",
+            texto: `Coloca esta imagen en un ambiente exterior soleado:
+
+- Fondo: playa o parque al amanecer
+- Luz natural cálida y dorada
+- Ambiente fresco y activo
+- Colores naturales y vivos
+- Estilo verano/fitness outdoor
+- Sensación de libertad y energía
+- Producto destacado con luz natural
+- Aspecto Pinterest premium
+
+Sin modificar el diseño del producto.`
+        },
+        {
+            titulo: "💎 Premium/Lujo",
+            badge: "prompt",
+            badgeText: "LUXURY",
+            texto: `Transforma en imagen premium de marca de lujo:
+
+- Fondo negro o gris oscuro elegante
+- Iluminación dramática lateral
+- Textura del tejido en detalle
+- Sombras profundas y elegantes
+- Estilo campaña Louis Vuitton/Gucci
+- Sensación de exclusividad
+- Producto como joya
+- Estética minimalista de alta gama
+- 4K profesional
+
+Mantén el diseño exacto.`
+        },
+        {
+            titulo: "🎬 Cinematográfico",
+            badge: "prompt",
+            badgeText: "CINEMA",
+            texto: `Convierte en imagen estilo película:
+
+- Iluminación cinematográfica dramática
+- Colores con grado de color cinematográfico (teal & orange)
+- Profundidad de campo con desenfoque
+- Ambiente de acción o suspenso
+- Contraste alto
+- Estilo blockbuster de Hollywood
+- Aspecto épico y potente
+- Formato panorámico 16:9
+
+Producto sin cambios.`
+        },
+        {
+            titulo: "📱 Vertical para Reels",
+            badge: "prompt",
+            badgeText: "REELS",
+            texto: `Adapta esta imagen para formato vertical de Reels/Stories:
+
+- Formato 9:16 vertical
+- Composición para móvil
+- Producto centrado y grande
+- Fondo llamativo pero no distractor
+- Espacio arriba y abajo para texto
+- Colores vibrantes optimizados para móvil
+- Estilo TikTok/Instagram Reels
+- Alto contraste
+
+Diseño intacto.`
+        },
+        {
+            titulo: "🎨 Minimalista Chic",
+            badge: "prompt",
+            badgeText: "MINIMAL",
+            texto: `Crea versión minimalista elegante:
+
+- Fondo pastel suave (rosa palo, beige, gris claro)
+- Producto flotando o levitando sutilmente
+- Sombra suave debajo
+- Espacios en blanco generosos
+- Estilo Apple/Muji
+- Estética limpia y sofisticada
+- Colores suaves y armoniosos
+- Aspecto zen y aspiracional
+
+Sin cambios en el producto.`
+        },
+        {
+            titulo: "🔥 Impacto Publicitario",
+            badge: "prompt",
+            badgeText: "AD",
+            texto: `Crea versión para anuncio publicitario impactante:
+
+- Composición dinámica y potente
+- Colores contrastados y llamativos
+- Producto en ángulo dramático
+- Efectos de movimiento sutiles
+- Fondo con textura o degradado
+- Estilo campaña deportiva Nike
+- Sensación de acción y energía
+- Alto impacto visual
+- Espacio para texto de venta
+
+Producto original preservado.`
+        },
+        {
+            titulo: "🌟 Con Modelo Realista",
+            badge: "prompt",
+            badgeText: "MODEL",
+            texto: `Recrea la imagen con un modelo profesional usando el producto:
+
+- Modelo con físico atlético natural
+- Pose deportiva dinámica
+- Ambiente de gimnasio o estudio
+- Iluminación profesional
+- Piel realista y natural
+- Expresión de confianza y motivación
+- Ropa visible y destacada
+- Calidad fotografía de moda
+
+El diseño del producto debe mantenerse exacto.`
+        },
+        {
+            titulo: "❄️ Estilo Frío/Moderno",
+            badge: "prompt",
+            badgeText: "COOL",
+            texto: `Aplica estilo moderno con tonos fríos:
+
+- Fondo con tonos azules, blancos y plateados
+- Iluminación fría tipo estudio moderno
+- Sensación tech/futurista
+- Producto brillante y limpio
+- Estilo campaña Apple/Tesla
+- Aspecto premium tecnológico
+- Sombras suaves azuladas
+- Alta definición
+
+Diseño original conservado.`
         }
-        document.getElementById('menu-btn').addEventListener('click', toggleMenu);
+    ];
 
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            const logo = document.getElementById('nav-logo');
-            const navLinks = document.querySelectorAll('.nav-link');
-            const btn = document.querySelector('.nav-btn');
-            
-            if (window.scrollY > 50) {
-                // Estilo al bajar: Fondo blanco, texto oscuro
-                navbar.classList.remove('bg-transparent', 'text-white');
-                navbar.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-md', 'text-gray-800');
-                navLinks.forEach(l => l.classList.remove('text-white'));
-                navLinks.forEach(l => l.classList.add('text-gray-600'));
-                btn.classList.remove('bg-white', 'text-brand-dark');
-                btn.classList.add('bg-brand-dark', 'text-white');
-                logo.classList.remove('text-white');
-                logo.classList.add('text-brand-dark');
-            } else {
-                // Estilo inicial: Transparente, texto blanco
-                navbar.classList.add('bg-transparent', 'text-white');
-                navbar.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-md', 'text-gray-800');
-                navLinks.forEach(l => l.classList.add('text-white'));
-                navLinks.forEach(l => l.classList.remove('text-gray-600'));
-                btn.classList.add('bg-white', 'text-brand-dark');
-                btn.classList.remove('bg-brand-dark', 'text-white');
-                logo.classList.add('text-white');
-                logo.classList.remove('text-brand-dark');
-            }
+    // ========== TIPS ==========
+    const tips = [
+        {
+            titulo: "⏰ Mejor Horario",
+            badge: "motivacion",
+            badgeText: "HORARIO",
+            texto: `📊 Los MEJORES horarios para publicar en Cuba:
+
+🌅 7:00 - 9:00 AM (antes del trabajo)
+🌞 12:00 - 2:00 PM (hora almuerzo)
+🌆 6:00 - 9:00 PM (después del trabajo)
+🌙 9:00 - 11:00 PM (ocio nocturno)
+
+⭐ El mejor: 8:00 PM en días de semana
+⭐ Fin de semana: 10:00 AM y 7:00 PM`
+        },
+        {
+            titulo: "📸 Regla de las Fotos",
+            badge: "motivacion",
+            badgeText: "FOTOS",
+            texto: `📸 Reglas de oro para fotos que venden:
+
+✅ Luz natural (cerca de ventana)
+✅ Fondo neutro (blanco/gris)
+✅ Producto extendido y sin arrugas
+✅ Múltiples ángulos
+✅ Detalle de texturas y etiquetas
+✅ Editar con Snapseed o Lightroom móvil
+
+❌ Evita: flash, fondos desordenados, poca luz`
+        },
+        {
+            titulo: "💰 Psicología de Precios",
+            badge: "motivacion",
+            badgeText: "PRECIOS",
+            texto: `💰 Precios que venden más:
+
+✨ $19.99 vende más que $20.00
+✨ Precios terminados en 5 o 9
+✨ Muestra el descuento en $ y %
+✨ "Antes $30, ahora $20" > "20% OFF"
+✨ Combos siempre parecen más baratos
+✨ Precio ancla: producto caro al lado para comparar`
+        },
+        {
+            titulo: "🔥 Palabras Poderosas",
+            badge: "motivacion",
+            badgeText: "COPY",
+            texto: `🔥 Palabras que impulsan ventas:
+
+⚡ GRATIS
+⚡ EXCLUSIVO
+⚡ ÚLTIMO / ÚLTIMAS
+⚡ NUEVO
+⚡ SOLO HOY
+⚡ AHORRA
+⚡ DESCUENTO
+⚡ REGALO
+⚡ GARANTIZADO
+⚡ RÁPIDO
+
+Úsalas en títulos y CTAs`
+        },
+        {
+            titulo: "📱 Regla 80/20",
+            badge: "motivacion",
+            badgeText: "ESTRATEGIA",
+            texto: `📱 Estrategia de contenido:
+
+80% APORTAR VALOR:
+• Tips de gym
+• Motivación
+• Consejos
+• Datos curiosos
+• Estilos de vida
+
+20% VENDER:
+• Productos
+• Ofertas
+• Descuentos
+
+Así no cansas a tu audiencia y venden más`
+        },
+        {
+            titulo: "🎯 Grupos Facebook Cuba",
+            badge: "motivacion",
+            badgeText: "GRUPOS",
+            texto: `🎯 Grupos recomendados en Facebook:
+
+• Revolico Cuba
+• Compra y Venta La Habana
+• Compra y Venta Cuba
+• Ropa y Zapatos Cuba
+• Gym y Fitness Cuba
+• Mercado Cubano
+• Cuba Compra y Venta Online
+• Ropa de Marca Cuba
+• Ofertas y Descuentos Cuba
+
+Únete a 15-20 y rota entre 5-8 diarios`
+        },
+        {
+            titulo: "🛠️ Herramientas Gratis",
+            badge: "motivacion",
+            badgeText: "TOOLS",
+            texto: `🛠️ Herramientas gratis útiles:
+
+📸 Canva - Diseño de posts
+🎨 Remove.bg - Quitar fondos
+✂️ CapCut - Videos y Reels
+📷 Snapseed - Editar fotos
+📅 Meta Business Suite - Programar posts
+📊 Google Trends - Ver qué se busca
+🔍 AnswerThePublic - Ideas de contenido`
+        },
+        {
+            titulo: "💬 Respuesta Rápida",
+            badge: "motivacion",
+            badgeText: "SERVICIO",
+            texto: `💬 Reglas de oro respondiendo:
+
+⏱️ Responde en menos de 30 min
+😊 Siempre saluda amable
+📸 Envía más fotos si piden
+💰 Da el precio claro y directo
+🎁 Ofrece descuento por decisión rápida
+📞 Ofrece llamada para dudas
+✅ Confirma el pedido por escrito
+
+Cliente atendido = cliente vendido`
+        }
+    ];
+
+    // ========== FUNCIONES ==========
+    function createCard(item) {
+        return `
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">${item.titulo}</div>
+                    <div class="badge ${item.badge}">${item.badgeText}</div>
+                </div>
+                <div class="card-content">${item.texto}</div>
+                <button class="copy-btn" onclick="copyText(this, \`${item.texto.replace(/`/g, '\\`')}\`)">
+                    📋 Copiar Texto
+                </button>
+            </div>
+        `;
+    }
+
+    function renderCards() {
+        document.getElementById('plantillas-grid').innerHTML = plantillas.map(createCard).join('');
+        document.getElementById('prompts-grid').innerHTML = prompts.map(createCard).join('');
+        document.getElementById('tips-grid').innerHTML = tips.map(createCard).join('');
+    }
+
+    function copyText(btn, text) {
+        navigator.clipboard.writeText(text).then(() => {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '✅ ¡Copiado!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.classList.remove('copied');
+            }, 2000);
         });
-    </script>
+    }
+
+    function showTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        event.target.classList.add('active');
+    }
+
+    function searchCards(input, gridId) {
+        const search = input.value.toLowerCase();
+        const cards = document.getElementById(gridId).getElementsByClassName('card');
+        Array.from(cards).forEach(card => {
+            const text = card.textContent.toLowerCase();
+            card.style.display = text.includes(search) ? '' : 'none';
+        });
+    }
+
+    // Inicializar
+    renderCards();
+</script>
+
 </body>
 </html>
