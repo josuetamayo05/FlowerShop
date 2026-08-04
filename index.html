@@ -47,6 +47,23 @@
         font-size: 1.1em;
     }
 
+    .whatsapp-info {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 20px;
+        background: linear-gradient(90deg, #25D366 0%, #128C7E 100%);
+        border-radius: 30px;
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+
+    .whatsapp-info:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+    }
+
     .tabs {
         display: flex;
         gap: 10px;
@@ -172,20 +189,38 @@
         border-radius: 10px;
     }
 
-    .copy-btn {
-        width: 100%;
+    .button-group {
+        display: flex;
+        gap: 10px;
+    }
+
+    .copy-btn, .wa-btn {
+        flex: 1;
         padding: 12px;
-        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
         border: none;
         color: #fff;
         border-radius: 10px;
         cursor: pointer;
-        font-size: 1em;
+        font-size: 0.95em;
         font-weight: 600;
         transition: all 0.3s;
+        text-decoration: none;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
     }
 
-    .copy-btn:hover {
+    .copy-btn {
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .wa-btn {
+        background: linear-gradient(90deg, #25D366 0%, #128C7E 100%);
+    }
+
+    .copy-btn:hover, .wa-btn:hover {
         transform: scale(1.02);
         box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
     }
@@ -282,6 +317,7 @@
         header h1 { font-size: 1.8em; }
         .calendar { grid-template-columns: repeat(2, 1fr); }
         .grid { grid-template-columns: 1fr; }
+        .button-group { flex-direction: column; }
     }
 </style>
 </head>
@@ -291,18 +327,27 @@
     <header>
         <h1>🚀 Panel de Marketing</h1>
         <p>Todo lo que necesitas para vender más - Copia y pega en un click</p>
+        <a href="https://wa.me/5353501476" target="_blank" class="whatsapp-info">
+            📱 WhatsApp: +53 5350 1476
+        </a>
     </header>
 
     <div class="tabs">
-        <button class="tab-btn active" onclick="showTab('plantillas')">📝 Plantillas WhatsApp/FB</button>
-        <button class="tab-btn" onclick="showTab('prompts')">🎨 Prompts para Imágenes</button>
-        <button class="tab-btn" onclick="showTab('calendario')">📅 Calendario Semanal</button>
-        <button class="tab-btn" onclick="showTab('tips')">💡 Tips y Estrategias</button>
+        <button class="tab-btn active" onclick="showTab(event, 'plantillas')">📝 Plantillas WhatsApp/FB</button>
+        <button class="tab-btn" onclick="showTab(event, 'prompts')">🎨 Prompts para Imágenes</button>
+        <button class="tab-btn" onclick="showTab(event, 'calendario')">📅 Calendario Semanal</button>
+        <button class="tab-btn" onclick="showTab(event, 'tips')">💡 Tips y Estrategias</button>
     </div>
 
     <!-- TAB PLANTILLAS -->
     <div id="plantillas" class="tab-content active">
         <h2 class="section-title">📝 Plantillas Listas para Copiar</h2>
+        <div class="info-box">
+            <h3>💡 Cómo usar:</h3>
+            <p>1. <b>Copiar Texto</b> → copia el mensaje al portapapeles<br>
+               2. <b>Enviar WhatsApp</b> → abre WhatsApp con el mensaje listo para enviar<br>
+               Tu número ya está integrado en todas las plantillas ✅</p>
+        </div>
         <input type="text" class="search-bar" placeholder="🔍 Buscar plantilla..." onkeyup="searchCards(this, 'plantillas-grid')">
         
         <div class="grid" id="plantillas-grid">
@@ -383,11 +428,15 @@
     </div>
 
     <footer>
-        <p>💜 Panel personalizado para tu tienda deportiva | Actualizado 2024</p>
+        <p>💜 Panel personalizado para tu tienda deportiva | WhatsApp: +53 5350 1476</p>
     </footer>
 </div>
 
 <script>
+    // Tu número de WhatsApp
+    const MI_WHATSAPP = "5353501476";
+    const MI_WHATSAPP_DISPLAY = "+53 5350 1476";
+
     // ========== PLANTILLAS ==========
     const plantillas = [
         {
@@ -404,7 +453,8 @@
 ✅ Diseño exclusivo
 ✅ Entrega en toda La Habana
 
-📲 Escríbeme al WhatsApp: [TU NÚMERO]`
+📲 Escríbeme al WhatsApp: ${MI_WHATSAPP_DISPLAY}
+👉 https://wa.me/${MI_WHATSAPP}`
         },
         {
             titulo: "💪 Motivación Gym",
@@ -420,7 +470,8 @@ Empieza la semana con la mejor ropa deportiva 🔥
 
 ¡Vístete como el atleta que quieres ser! 💯
 
-📩 Privado o WhatsApp: [NÚMERO]`
+📩 WhatsApp: ${MI_WHATSAPP_DISPLAY}
+👉 https://wa.me/${MI_WHATSAPP}`
         },
         {
             titulo: "🎁 Combo del Día",
@@ -437,7 +488,8 @@ Empieza la semana con la mejor ropa deportiva 🔥
 Solo por hoy ⏰
 Últimas piezas 📦
 
-DM ahora 📲`
+📲 DM ahora: ${MI_WHATSAPP_DISPLAY}
+👉 https://wa.me/${MI_WHATSAPP}`
         },
         {
             titulo: "🆕 Producto Nuevo",
@@ -454,7 +506,10 @@ DM ahora 📲`
 💵 $[PRECIO] USD
 📏 Todas las tallas
 
-¿Te lo apartamos? 🙋‍♀️`
+¿Te lo apartamos? 🙋‍♀️
+
+📲 ${MI_WHATSAPP_DISPLAY}
+👉 https://wa.me/${MI_WHATSAPP}`
         },
         {
             titulo: "🚨 Rebaja Brutal",
@@ -468,7 +523,9 @@ DM ahora 📲`
 
 Solo mientras dure el stock ⏳
 
-📩 Escríbeme antes que se acaben`
+📩 Escríbeme antes que se acaben
+📲 WhatsApp: ${MI_WHATSAPP_DISPLAY}
+👉 https://wa.me/${MI_WHATSAPP}`
         },
         {
             titulo: "❤️ Testimonio",
@@ -481,7 +538,10 @@ Solo mientras dure el stock ⏳
 
 Únete a las decenas de clientas satisfechas 💪
 
-Escríbeme y comprueba por qué somos diferentes ✨`
+Escríbeme y comprueba por qué somos diferentes ✨
+
+📲 ${MI_WHATSAPP_DISPLAY}
+👉 https://wa.me/${MI_WHATSAPP}`
         },
         {
             titulo: "📸 Estilo de Vida",
@@ -494,7 +554,10 @@ Cuando la ropa te motiva a entrenar más fuerte 🔥
 🛍️ Todo lo que ves está disponible
 💵 Precios desde $[X] USD
 
-¿Cuál es tu look favorito? 👇`
+¿Cuál es tu look favorito? 👇
+
+📲 ${MI_WHATSAPP_DISPLAY}
+👉 https://wa.me/${MI_WHATSAPP}`
         },
         {
             titulo: "⏰ Urgencia",
@@ -509,7 +572,8 @@ Cuando la ropa te motiva a entrenar más fuerte 🔥
 
 Al que madruga... 🐦
 
-📲 [NÚMERO]`
+📲 ${MI_WHATSAPP_DISPLAY}
+👉 https://wa.me/${MI_WHATSAPP}`
         },
         {
             titulo: "💡 Comparación de Valor",
@@ -525,7 +589,8 @@ Conmigo:
 
 ¡AHORRAS MÁS DEL 50%! 💰
 
-📩 Escríbeme`
+📩 Escríbeme: ${MI_WHATSAPP_DISPLAY}
+👉 https://wa.me/${MI_WHATSAPP}`
         },
         {
             titulo: "🤔 Pregunta al Público",
@@ -539,7 +604,10 @@ Conmigo:
 2️⃣ Leggins + top separados
 3️⃣ Short + camiseta
 
-Responde en los comentarios y te doy una oferta especial 🎁`
+Responde en los comentarios y te doy una oferta especial 🎁
+
+📲 ${MI_WHATSAPP_DISPLAY}
+👉 https://wa.me/${MI_WHATSAPP}`
         },
         {
             titulo: "📢 Anuncio General",
@@ -553,7 +621,10 @@ Responde en los comentarios y te doy una oferta especial 🎁`
 📦 Stock disponible
 
 ¿Quieres el catálogo completo?
-Escríbeme "CATÁLOGO" al privado 📲`
+Escríbeme "CATÁLOGO" al privado 📲
+
+📲 WhatsApp: ${MI_WHATSAPP_DISPLAY}
+👉 https://wa.me/${MI_WHATSAPP}?text=CATALOGO`
         },
         {
             titulo: "🎊 Fin de Semana",
@@ -569,7 +640,8 @@ Aprovecha para renovar tu ropa de gym:
 
 Solo sábado y domingo ⏰
 
-📩 [NÚMERO]`
+📩 ${MI_WHATSAPP_DISPLAY}
+👉 https://wa.me/${MI_WHATSAPP}`
         },
         {
             titulo: "🌟 Antes/Después",
@@ -583,7 +655,8 @@ Cuando entrenas con:
 
 Renueva tu look deportivo hoy 💪
 
-📩 Escríbeme`
+📩 ${MI_WHATSAPP_DISPLAY}
+👉 https://wa.me/${MI_WHATSAPP}`
         },
         {
             titulo: "🎁 Idea de Regalo",
@@ -598,7 +671,8 @@ Sorprende con:
 
 Envolvemos como regalo 🎀
 
-📩 Pide ya`
+📩 Pide ya: ${MI_WHATSAPP_DISPLAY}
+👉 https://wa.me/${MI_WHATSAPP}`
         },
         {
             titulo: "🔔 Preventa",
@@ -613,7 +687,9 @@ Esta semana llegan:
 
 ¿Quieres apartar el tuyo con anticipación?
 
-📩 Escríbeme "APARTAR"`
+📩 Escríbeme "APARTAR"
+📲 ${MI_WHATSAPP_DISPLAY}
+👉 https://wa.me/${MI_WHATSAPP}?text=APARTAR`
         },
         {
             titulo: "🚨 Actualización Rápida",
@@ -625,7 +701,9 @@ Esta semana llegan:
 💰 Precios actualizados
 🎁 Rebajas especiales
 
-Escríbeme al privado 📩`
+Escríbeme al privado 📩
+📲 ${MI_WHATSAPP_DISPLAY}
+👉 https://wa.me/${MI_WHATSAPP}`
         },
         {
             titulo: "💎 Cliente VIP",
@@ -641,7 +719,9 @@ Solo para mis clientes fieles:
 
 Válido hasta [FECHA]
 
-Escríbeme "VIP" al privado 📲`
+Escríbeme "VIP" al privado 📲
+📲 ${MI_WHATSAPP_DISPLAY}
+👉 https://wa.me/${MI_WHATSAPP}?text=VIP`
         },
         {
             titulo: "🏋️ Consejo Fitness",
@@ -657,7 +737,9 @@ Escríbeme "VIP" al privado 📲`
 
 Por eso los conjuntos deportivos son la mejor inversión 💪
 
-Cuéntame ¿ya tienes el tuyo?`
+Cuéntame ¿ya tienes el tuyo?
+📲 ${MI_WHATSAPP_DISPLAY}
+👉 https://wa.me/${MI_WHATSAPP}`
         }
     ];
 
@@ -1007,7 +1089,14 @@ Cliente atendido = cliente vendido`
     ];
 
     // ========== FUNCIONES ==========
-    function createCard(item) {
+    function createCard(item, incluirWhatsApp = false) {
+        // Encode del texto para el URL de WhatsApp
+        const textoWhatsApp = encodeURIComponent(item.texto);
+        const waLink = `https://wa.me/${MI_WHATSAPP}?text=${textoWhatsApp}`;
+        
+        // Escape backticks para el JavaScript
+        const textoEscapado = item.texto.replace(/`/g, '\\`').replace(/\$/g, '\\$');
+        
         return `
             <div class="card">
                 <div class="card-header">
@@ -1015,17 +1104,24 @@ Cliente atendido = cliente vendido`
                     <div class="badge ${item.badge}">${item.badgeText}</div>
                 </div>
                 <div class="card-content">${item.texto}</div>
-                <button class="copy-btn" onclick="copyText(this, \`${item.texto.replace(/`/g, '\\`')}\`)">
-                    📋 Copiar Texto
-                </button>
+                <div class="button-group">
+                    <button class="copy-btn" onclick="copyText(this, \`${textoEscapado}\`)">
+                        📋 Copiar
+                    </button>
+                    ${incluirWhatsApp ? `
+                    <a href="${waLink}" target="_blank" class="wa-btn">
+                        📱 Enviar WhatsApp
+                    </a>
+                    ` : ''}
+                </div>
             </div>
         `;
     }
 
     function renderCards() {
-        document.getElementById('plantillas-grid').innerHTML = plantillas.map(createCard).join('');
-        document.getElementById('prompts-grid').innerHTML = prompts.map(createCard).join('');
-        document.getElementById('tips-grid').innerHTML = tips.map(createCard).join('');
+        document.getElementById('plantillas-grid').innerHTML = plantillas.map(item => createCard(item, true)).join('');
+        document.getElementById('prompts-grid').innerHTML = prompts.map(item => createCard(item, false)).join('');
+        document.getElementById('tips-grid').innerHTML = tips.map(item => createCard(item, false)).join('');
     }
 
     function copyText(btn, text) {
@@ -1040,7 +1136,7 @@ Cliente atendido = cliente vendido`
         });
     }
 
-    function showTab(tabId) {
+    function showTab(event, tabId) {
         document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(tabId).classList.add('active');
